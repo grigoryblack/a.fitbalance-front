@@ -1,0 +1,96 @@
+/* Сбрасываем отступы, поля и размеры шрифта */
+*,
+
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Устанавливаем размер шрифта по умолчанию и удаляем дополнительные пробелы */
+html {
+  font-size: 100%; /* 16px по умолчанию */
+  line-height: 1.15; /* Чтобы браузеры не добавляли лишние пробелы между строками */
+  -webkit-text-size-adjust: 100%; /* Для правильного масштабирования на мобильных устройствах */
+  -ms-text-size-adjust: 100%; /* Поддержка старых версий IE */
+}
+
+/* Убираем оформление ссылок и кнопок */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+/* Убираем точки у списков */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Сбрасываем стили таблиц */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  cursor: pointer;
+}
+
+input,
+textarea,
+button {
+  outline: none;
+  border-radius: 0;
+}
+
+/* Убираем ненужные стили для форм */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+input[type="search"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/* Убираем выделение элементов при клике в некоторых браузерах */
+::selection {
+  color: inherit;
+  background-color: #b3d4fc;
+}
+
