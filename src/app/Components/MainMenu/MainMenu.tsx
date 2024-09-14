@@ -6,6 +6,7 @@ import {
 import {Button, ConfigProvider, Menu} from 'antd';
 import {menuItems} from "../../../assets/Constants/MenuConstants.tsx";
 import MainMenuStyle from './MainMenuStyle.js';
+import styles from './MainMenuStyle.module.scss'
 
 // Мас
 const MainMenu: React.FC = () => {
@@ -17,7 +18,7 @@ const MainMenu: React.FC = () => {
 
     return (
         <ConfigProvider theme={MainMenuStyle}>
-            <div style={{width: 256}}>
+            <div className={styles.menu}>
                 <Button
                     type="primary"
                     onClick={toggleCollapsed}

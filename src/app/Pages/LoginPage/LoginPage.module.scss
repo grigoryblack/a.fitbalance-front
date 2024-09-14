@@ -1,0 +1,154 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: $backGroundColor;
+  overflow: hidden;
+
+  .form__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2rem;
+    border-radius: 10px;
+    background-color: $secondaryColor;
+    max-width: 400px;
+    width: 100%;
+    z-index: 2;
+
+    h1 {
+      font-size: 1.8rem;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+    }
+
+    p {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .container__switch {
+      margin: 1rem 0;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+
+      .form__items {
+        width: 100%;
+      }
+
+      .form__buttons {
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  .textBackground {
+    position: absolute;
+    top: -20%;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+    transform: rotate(-20deg);
+
+    .marquee {
+      position: absolute;
+      width: 200%; // Дважды ширина экрана для бесконечной прокрутки
+      font-size: 6rem;
+      font-weight: bold;
+      color: rgba(255, 255, 255, 0.4);
+      white-space: nowrap;
+      overflow: hidden;
+      display: flex;
+      justify-content: space-between;
+
+      span {
+        display: inline-block;
+        padding-right: 2rem;
+      }
+
+      &.left-to-right {
+        animation: scrollLeftToRight 20s linear infinite;
+      }
+
+      &.right-to-left {
+        animation: scrollRightToLeft 20s linear infinite;
+      }
+    }
+
+    .marquee:nth-child(1) { top: 0; animation-duration: 30s; }
+    .marquee:nth-child(2) { top: 10%; animation-duration: 25s; }
+    .marquee:nth-child(3) { top: 20%; animation-duration: 20s; }
+    .marquee:nth-child(4) { top: 30%; animation-duration: 15s; }
+    .marquee:nth-child(5) { top: 40%; animation-duration: 10s; }
+    .marquee:nth-child(6) { top: 50%; animation-duration: 12s; }
+    .marquee:nth-child(7) { top: 60%; animation-duration: 18s; }
+    .marquee:nth-child(8) { top: 70%; animation-duration: 22s; }
+    .marquee:nth-child(9) { top: 80%; animation-duration: 26s; }
+    .marquee:nth-child(10) { top: 90%; animation-duration: 28s; }
+    .marquee:nth-child(11) { top: 100%; animation-duration: 24s; }
+  }
+}
+
+// Анимация для бесконечного движения текста слева направо
+@keyframes scrollLeftToRight {
+  0% {
+    transform: translateX(-100%); // Начало за пределами слева
+  }
+  100% {
+    transform: translateX(100%); // Конец за пределами справа
+  }
+}
+
+// Анимация для бесконечного движения текста справа налево
+@keyframes scrollRightToLeft {
+  0% {
+    transform: translateX(100%); // Начало за пределами справа
+  }
+  100% {
+    transform: translateX(-100%); // Конец за пределами слева
+  }
+}
+
+@media(max-width: 700px){
+  .wrapper {
+    padding: 0 0.5rem;
+    .textBackground {
+      top: -20%;
+      left: -10%;
+      width: 200%;
+    }
+  }
+}
+
+@media(max-width: 400px){
+  .wrapper {
+    padding: 0 0.5rem;
+    .form__container {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+      }
+
+      p {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

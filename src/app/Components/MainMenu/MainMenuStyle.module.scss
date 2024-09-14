@@ -1,0 +1,12 @@
+.menu {
+  position: fixed;
+  top: 2%;
+  left: 1%;
+}
+
+@media (max-width: 500px) {
+  .menu {
+    top: 2%;
+    left: 3%;
+  }
+}

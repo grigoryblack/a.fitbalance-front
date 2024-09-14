@@ -13,7 +13,7 @@ type MenuItem = Required<MenuProps>['items'][number];
 // Массив элементов меню
 export const menuItems: MenuItem[] = [
     { key: '1', icon: <HomeOutlined />, label: 'Главная' },
-    { key: '2', icon: <UserOutlined />, label: 'Аккаунт' },
+    { key: '2', icon: <UserOutlined />, label: 'Профиль' },
     {
         key: 'sub1',
         label: 'Navigation One',
