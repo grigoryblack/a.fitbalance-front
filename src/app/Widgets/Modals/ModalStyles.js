@@ -1,5 +1,5 @@
-// CalendarStyles.js
-const CalendarStyles = {
+// ModalStyles.js
+const modalStyles = {
     token: {
         colorPrimary: '#E250A4',
         colorPrimaryHover: '#A6457C',// Основной цвет кнопки
@@ -11,4 +11,4 @@ const CalendarStyles = {
     },
 };
 
-export default CalendarStyles;
+export default modalStyles;

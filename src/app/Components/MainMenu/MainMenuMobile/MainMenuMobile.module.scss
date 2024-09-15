@@ -34,3 +34,38 @@
     }
   }
 }
+
+@media (max-width: 350px) {
+  .menu__container {
+
+    .mobile_menu {
+      display: flex;
+      justify-content: center;
+      column-gap: 1px;
+      width: 100%;
+      background-color: $accentColor;
+
+      li{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        padding-top: 1rem;
+
+        div {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        span {
+          font-size: 0.8rem;
+          svg{
+            font-size: 1.3rem;
+          }
+          margin: 0 !important;
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Form, message } from 'antd';
 import { RuleObject } from 'rc-field-form/lib/interface';
 import { Store } from 'rc-field-form/lib/interface';
@@ -12,6 +13,7 @@ import styles from './LoginPage.module.scss';
 const LoginPage: React.FC = () => {
     const [isRegister, setIsRegister] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const runningText = 'a.fitbalance';
 
@@ -30,6 +32,7 @@ const LoginPage: React.FC = () => {
             } else {
                 message.success('Авторизация успешна!');
             }
+            navigate('/');
         }, 1000);
     };
 
@@ -49,7 +52,6 @@ const LoginPage: React.FC = () => {
     return (
         <section className={styles.wrapper}>
             <div className={styles.textBackground}>
-                {/* Создаём несколько строк текста */}
                 {[...Array(11)].map((_, index) => (
                     <div key={index} className={`${styles.marquee} ${index % 2 === 0 ? styles['left-to-right'] : styles['right-to-left']}`}>
                         <span>{repeatedText}</span>
