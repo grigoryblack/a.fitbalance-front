@@ -6,11 +6,11 @@ import MainMenuMobile from './MainMenuMobile/MainMenuMobile';
 const MainMenu = () => {
     const location = useLocation();
     const isLoginPage = location.pathname === '/sign-in';
-    const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+    const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 550);
 
     useEffect(() => {
         const handleResize = () => {
-            setIsDesktop(window.innerWidth >= 768);
+            setIsDesktop(window.innerWidth >= 550);
         };
 
         window.addEventListener('resize', handleResize);
