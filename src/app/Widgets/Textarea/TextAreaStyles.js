@@ -1,4 +1,4 @@
-// MainMenuStyle.js
+// MainMenuDesktopStyle.js
 const mainMenuStyle = {
     token: {
         colorPrimary: '#E250A4',

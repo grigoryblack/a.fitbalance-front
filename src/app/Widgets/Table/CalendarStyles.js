@@ -1,5 +1,5 @@
-// CalendarStylesc.js
-const calendarStylesc = {
+// CalendarStyles.js
+const CalendarStyles = {
     token: {
         colorPrimary: '#E250A4',
         colorPrimaryHover: '#A6457C',// Основной цвет кнопки
@@ -11,4 +11,4 @@ const calendarStylesc = {
     },
 };
 
-export default calendarStylesc;
+export default CalendarStyles;

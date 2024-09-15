@@ -1,39 +1,32 @@
-import {useState} from 'react';
-import {
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-} from '@ant-design/icons';
-import {Button, ConfigProvider, Menu} from 'antd';
-import {menuItems} from "../../../assets/Constants/MenuConstants.tsx";
-import MainMenuStyle from './MainMenuStyle.js';
-import styles from './MainMenuStyle.module.scss'
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import MainMenuDesktop from './MainMenuDesktop/MainMenuDesktop';
+import MainMenuMobile from './MainMenuMobile/MainMenuMobile';
 
-// Мас
-const MainMenu: React.FC = () => {
-    const [collapsed, setCollapsed] = useState<boolean>(false);
+const MainMenu = () => {
+    const location = useLocation();
+    const isLoginPage = location.pathname === '/sign-in';
+    const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
-    const toggleCollapsed = () => {
-        setCollapsed(prev => !prev);
-    };
+    useEffect(() => {
+        const handleResize = () => {
+            setIsDesktop(window.innerWidth >= 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    if (isLoginPage) {
+        return null;
+    }
 
     return (
-        <ConfigProvider theme={MainMenuStyle}>
-            <div className={styles.menu}>
-                <Button
-                    type="primary"
-                    onClick={toggleCollapsed}
-                    style={{marginBottom: 16}}
-                >
-                    {collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
-                </Button>
-                <Menu
-                    defaultSelectedKeys={['1']}
-                    mode="inline"
-                    inlineCollapsed={collapsed}
-                    items={menuItems}
-                />
-            </div>
-        </ConfigProvider>
+        <>
+            {isDesktop ? <MainMenuDesktop /> : <MainMenuMobile />}
+        </>
     );
 };
 

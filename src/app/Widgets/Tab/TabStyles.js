@@ -1,5 +1,5 @@
-// DropdownStyles.js
-const switchStyles = {
+// CalendarStylesc.js
+const tabStyles = {
     token: {
         colorPrimary: '#E250A4',
         colorPrimaryHover: '#A6457C',// Основной цвет кнопки
@@ -11,4 +11,4 @@ const switchStyles = {
     },
 };
 
-export default switchStyles;
+export default tabStyles;

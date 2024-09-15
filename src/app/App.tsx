@@ -1,18 +1,17 @@
 import {Route, Routes} from "react-router-dom";
 import MainPage from "./Pages/MainPage";
 import LoginPage from "./Pages/LoginPage";
-import OrientationMessage from "./Components/OrientationMessage/OrientationMessage.tsx";
+import MainMenu from "./Components/MainMenu/MainMenu.tsx";
 
 function App() {
 
     return (
         <>
-            <OrientationMessage>
-                <Routes>
-                    <Route path="/" element={<MainPage/>}/>
-                    <Route path="/sign-in" element={<LoginPage/>}/>
-                </Routes>
-            </OrientationMessage>
+            <MainMenu/>
+            <Routes>
+                <Route path="/" element={<MainPage/>}/>
+                <Route path="/sign-in" element={<LoginPage/>}/>
+            </Routes>
         </>
     )
 }

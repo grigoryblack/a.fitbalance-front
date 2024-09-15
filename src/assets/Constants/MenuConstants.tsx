@@ -2,7 +2,7 @@
 import {
     LogoutOutlined,
     UserOutlined,
-    MailOutlined,
+    SettingOutlined,
     HomeOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
@@ -16,11 +16,14 @@ export const menuItems: MenuItem[] = [
     { key: '2', icon: <UserOutlined />, label: 'Профиль' },
     {
         key: 'sub1',
-        label: 'Navigation One',
-        icon: <MailOutlined />,
+        label: 'Настройки',
+        icon: <SettingOutlined />,
+        theme: 'light',
         children: [
-            { key: '4', label: 'Option 5' },
+            { key: '4', label: 'Настройка приложения' },
+            { key: '5', label: 'Настройка приложения' },
+            { key: '6', label: 'Настройка приложения' },
         ],
     },
-    { key: '5', icon: <LogoutOutlined />, label: 'Выход' },
+    { key: '7', icon: <LogoutOutlined />, label: 'Выход' },
 ];

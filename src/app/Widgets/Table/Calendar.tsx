@@ -2,7 +2,7 @@ import React from 'react';
 import { Badge, Calendar as AntCalendar, ConfigProvider } from 'antd';
 import type { BadgeProps, CalendarProps } from 'antd';
 import type { Dayjs } from 'dayjs';
-import calendarStyle from './CalendarStyles.js';
+import CalendarStyles from './CalendarStyles.js';
 
 interface EventData {
     date: number;
@@ -61,7 +61,7 @@ const Calendar: React.FC<CustomCalendarProps> = ({ eventsData, ...props }) => {
     };
 
     return (
-        <ConfigProvider theme={calendarStyle}>
+        <ConfigProvider theme={CalendarStyles}>
             <AntCalendar {...props} cellRender={cellRender} />
         </ConfigProvider>
     );
