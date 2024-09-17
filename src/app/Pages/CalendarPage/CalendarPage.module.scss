@@ -10,7 +10,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    margin-top: 1rem;
 
     h1 {
       font-size: 2rem;
@@ -20,7 +21,10 @@
 
 @media (max-width: 1450px) {
   .wrapper {
-    padding: 0 5rem;
+    padding: 0 6rem;
+    .container {
+      align-items: center;
+    }
   }
 }
 

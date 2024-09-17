@@ -1,30 +1,32 @@
 import React, { useState } from 'react';
-import {ConfigProvider, Menu, MenuProps} from 'antd';
+import { ConfigProvider, Menu, MenuProps } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { menuItems } from '../../../../assets/Constants/MenuConstants.tsx';
+import { getMenuItems } from '../../../../assets/Constants/MenuConstants.tsx';
 import mainMenuMobileStyle from './MainMenuMobileStyles.js';
-import styles from './MainMenuMobile.module.scss';
 import Modal from "../../../Widgets/Modals/Modal.tsx";
+import styles from './MainMenuMobile.module.scss';
 
 const MainMenuMobile: React.FC = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [modalContent, setModalContent] = useState<string>('');    const navigate = useNavigate();
+    const [modalContent, setModalContent] = useState<string>('');
+    const navigate = useNavigate();
+
+    const menuItems = getMenuItems(navigate);
 
     const handleMenuClick: MenuProps['onClick'] = (e) => {
-        if (e.key === '7') {
+        if (e.key === '5') {
             setModalContent('Вы уверены, что хотите выйти?');
             setIsModalVisible(true);
-        } else {
         }
     };
 
     const handleModalOk = () => {
-        navigate('/sign-in'); // Перенаправление на страницу входа
-        setIsModalVisible(false); // Закрыть модалку
+        navigate('/sign-in');
+        setIsModalVisible(false);
     };
 
     const handleModalCancel = () => {
-        setIsModalVisible(false); // Закрыть модалку
+        setIsModalVisible(false);
     };
 
     return (
@@ -35,7 +37,7 @@ const MainMenuMobile: React.FC = () => {
                     theme="dark"
                     className={styles.mobile_menu}
                     items={menuItems}
-                    onClick={handleMenuClick} // Обработчик кликов
+                    onClick={handleMenuClick}
                 />
             </div>
             <Modal

@@ -90,7 +90,7 @@ const Calendar: React.FC<CustomCalendarProps> = ({eventsData, ...props}) => {
                             <Card title={item.type} bordered={false}>
                                 <span className={styles.list__card}>
                                     {item.content}
-                                    <Button>
+                                    <Button type="primary">
                                         Подробнее
                                     </Button>
                                 </span>

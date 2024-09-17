@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { Button, ConfigProvider, Menu, MenuProps } from 'antd';
-import { menuItems } from '../../../../assets/Constants/MenuConstants.tsx';
+import { getMenuItems } from '../../../../assets/Constants/MenuConstants.tsx';
 import mainMenuDesktopStyle from './MainMenuDesktopStyle.js';
-import styles from './MainMenuDesktopStyle.module.scss';
 import Modal from '../../../Widgets/Modals/Modal.tsx';
+import styles from './MainMenuDesktopStyle.module.scss';
 
 const MainMenuDesktop: React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(true);
@@ -17,11 +17,12 @@ const MainMenuDesktop: React.FC = () => {
         setCollapsed(prev => !prev);
     };
 
+    const menuItems = getMenuItems(navigate);
+
     const handleMenuClick: MenuProps['onClick'] = (e) => {
-        if (e.key === '7') {
+        if (e.key === '5') {
             setModalContent('Вы уверены, что хотите выйти?');
             setIsModalVisible(true);
-        } else {
         }
     };
 
