@@ -76,6 +76,13 @@
           grid-template-columns: repeat(1, 1fr);
         }
       }
+      .table{
+        .table__container{
+          flex-direction: column;
+          align-items: flex-start;
+          row-gap: 0.5rem;
+        }
+      }
     }
   }
 }

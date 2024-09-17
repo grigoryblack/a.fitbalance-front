@@ -73,7 +73,7 @@ const Services = () => {
                 dataSource={dataSource}
                 pagination={false}
             />
-            <AddServiceForm visible={modalVisible} onClose={hideModal} />
+            <AddServiceForm visible={modalVisible} onClose={hideModal} users={[]} />
         </div>
     );
 };
