@@ -110,7 +110,6 @@ const AddServiceForm: React.FC<AddServiceFormProps> = ({ visible, onClose, users
                         rules={[{ required: true, message: 'Введите адрес' }]}
                     >
                         <Select
-                            mode="tags"
                             placeholder="Введите или выберите адрес"
                             style={{ width: '100%' }}
                             dropdownRender={menu => (
