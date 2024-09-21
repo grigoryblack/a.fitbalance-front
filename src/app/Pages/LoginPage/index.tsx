@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Form, message } from 'antd';
+import {Navigate, useNavigate} from 'react-router-dom';
+import {Form, message} from 'antd';
 import { RuleObject } from 'rc-field-form/lib/interface';
-import { Store } from 'rc-field-form/lib/interface';
 import Input from "../../Widgets/Inputs/Input/Input.tsx";
 import Button from "../../Widgets/Button/Button.tsx";
 import InputPassword from "../../Widgets/Inputs/InputPassword/InputPassword.tsx";
 import Switch from "../../Widgets/Switch/Switch.tsx";
 import { NamePath } from 'antd/es/form/interface';
 import styles from './LoginPage.module.scss';
+import Select from "../../Widgets/Select/Select.tsx";
+import {axiosPost} from "../../../api/apiService.ts";
+import {AuthResponse} from "./LoginPage.interfaces.ts";
+import {useDispatch, useSelector} from "react-redux";
+import {login} from "../../features/auth/authSlice.ts";
+import {RootState} from "../../features/store.ts";
+
 
 const LoginPage: React.FC = () => {
     const [isRegister, setIsRegister] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
+    const apiUrl = isRegister ? '/auth/register' : '/auth/login';
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
     const runningText = 'a.fitbalance';
+    const token = useSelector((state: RootState) => state.auth.token);
 
     const generateRepeatedText = (text: string, count: number) => {
         return Array(count).fill(text).join(' ');
@@ -23,17 +31,23 @@ const LoginPage: React.FC = () => {
 
     const repeatedText = generateRepeatedText(runningText, 50);
 
-    const onFinish = (values: Store): void => {
+    const onFinish = (values: { email: string; password: string; role?: string }): void => {
         setLoading(true);
-        setTimeout(() => {
-            setLoading(false);
-            if (isRegister) {
-                message.success('Регистрация прошла успешно!');
-            } else {
-                message.success('Авторизация успешна!');
-            }
-            navigate('/');
-        }, 1000);
+
+        axiosPost(apiUrl, values)
+            .then((response: AuthResponse) => {
+                const { access_token, user } = response;
+                dispatch(login({ token: access_token, user }));
+                message.success(isRegister ? 'Регистрация прошла успешно!' : 'Авторизация успешна!');
+                navigate('/');
+            })
+            .catch(error => {
+                const errorMessage = error.response?.data?.message || 'Произошла ошибка. Попробуйте еще раз.';
+                message.error(errorMessage);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     };
 
     const onFinishFailed = (errorInfo: any): void => {
@@ -49,7 +63,7 @@ const LoginPage: React.FC = () => {
         },
     });
 
-    return (
+    return !token ? (
         <section className={styles.wrapper}>
             <div className={styles.textBackground}>
                 {[...Array(11)].map((_, index) => (
@@ -108,22 +122,44 @@ const LoginPage: React.FC = () => {
                     </Form.Item>
 
                     {isRegister && (
-                        <Form.Item
-                            label="Подтвердите пароль"
-                            name="confirmPassword"
-                            size={"large"}
-                            className={styles.form__items}
-                            dependencies={['password'] as NamePath[]}
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Пожалуйста, подтвердите пароль!',
-                                },
-                                validateConfirmPassword,
-                            ]}
-                        >
-                            <InputPassword size={"large"} />
-                        </Form.Item>
+                        <>
+                            <Form.Item
+                                label="Подтвердите пароль"
+                                name="confirmPassword"
+                                size={"large"}
+                                className={styles.form__items}
+                                dependencies={['password'] as NamePath[]}
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Пожалуйста, подтвердите пароль!',
+                                    },
+                                    validateConfirmPassword,
+                                ]}
+                            >
+                                <InputPassword size={"large"} />
+                            </Form.Item>
+
+                            <Form.Item
+                                label="Выберите роль"
+                                name="role"
+                                size={"large"}
+                                className={styles.form__items}
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Пожалуйста, укажите свою роль!',
+                                    },
+                                ]}
+                            >
+                                <Select
+                                    options={[
+                                        { value: 'student', label: 'Ученик' },
+                                        { value: 'trainer', label: 'Тренер' },
+                                    ]}
+                                />
+                            </Form.Item>
+                        </>
                     )}
 
                     <Form.Item className={styles.form__buttons}>
@@ -134,7 +170,7 @@ const LoginPage: React.FC = () => {
                 </Form>
             </div>
         </section>
-    );
+    ) : <Navigate to ='/'/>;
 };
 
 export default LoginPage;

@@ -5,7 +5,7 @@ import MainMenuMobile from './MainMenuMobile/MainMenuMobile';
 
 const MainMenu = () => {
     const location = useLocation();
-    const isLoginPage = location.pathname === '/sign-in';
+    const isLoginPage = ['/sign_in', '/'].includes(location.pathname);
     const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 550);
 
     useEffect(() => {

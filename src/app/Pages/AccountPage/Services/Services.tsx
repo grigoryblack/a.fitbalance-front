@@ -65,7 +65,7 @@ const Services = () => {
     return (
         <div className={styles.table}>
             <div className={styles.table__container}>
-                <h2>Тренировки</h2>
+                <h2>Мои тренировки</h2>
                 <Button type="primary" onClick={showModal}>Добавить тренировку</Button>
             </div>
             <Table<DataType>

@@ -5,12 +5,15 @@ import { getMenuItems } from '../../../../assets/Constants/MenuConstants.tsx';
 import mainMenuMobileStyle from './MainMenuMobileStyles.js';
 import Modal from "../../../Widgets/Modals/Modal.tsx";
 import styles from './MainMenuMobile.module.scss';
+import {useAuth} from "../../../../context/AuthContext.tsx";
+import {useDispatch} from "react-redux";
+import {logout} from "../../../features/auth/authSlice.ts";
 
 const MainMenuMobile: React.FC = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [modalContent, setModalContent] = useState<string>('');
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
     const menuItems = getMenuItems(navigate);
 
     const handleMenuClick: MenuProps['onClick'] = (e) => {
@@ -21,9 +24,11 @@ const MainMenuMobile: React.FC = () => {
     };
 
     const handleModalOk = () => {
-        navigate('/sign-in');
+        dispatch(logout());
+        navigate('/sign_in');
         setIsModalVisible(false);
     };
+
 
     const handleModalCancel = () => {
         setIsModalVisible(false);
