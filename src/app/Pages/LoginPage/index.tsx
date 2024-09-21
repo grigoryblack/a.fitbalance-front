@@ -85,6 +85,7 @@ const LoginPage: React.FC = () => {
                     unCheckedChildren="Регистрация"
                 />
                 <Form
+                    disabled={loading}
                     name="authForm"
                     layout="vertical"
                     initialValues={{ remember: true }}
@@ -118,7 +119,7 @@ const LoginPage: React.FC = () => {
                             },
                         ]}
                     >
-                        <InputPassword size={"large"} />
+                        <InputPassword size={"large"}/>
                     </Form.Item>
 
                     {isRegister && (

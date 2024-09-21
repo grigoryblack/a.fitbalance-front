@@ -81,7 +81,6 @@ const AccountPage: React.FC = () => {
                     onValuesChange={handleFormChange}
                     onFinish={handleSubmit}
                     className={styles.form}
-                    disabled={loading}
                 >
                     <div className={styles.form__item}>
                         <Form.Item
@@ -89,21 +88,21 @@ const AccountPage: React.FC = () => {
                             label="Имя"
                             rules={[{required: true, message: 'Пожалуйста, введите ваше имя!'}]}
                         >
-                            <Input size={"large"}/>
+                            <Input size={"large"} loading={loading}/>
                         </Form.Item>
                         <Form.Item
                             name="surname"
                             label="Фамилия"
                             rules={[{required: true, message: 'Пожалуйста, введите вашу фамилию!'}]}
                         >
-                            <Input size={"large"}/>
+                            <Input size={"large"} loading={loading}/>
                         </Form.Item>
                         <Form.Item
                             name="phone"
                             label="Номер телефона"
                             rules={[{required: true, message: 'Пожалуйста, введите ваш номер телефона!'}]}
                         >
-                            <PhoneInput size={"large"}/>
+                            <PhoneInput size={"large"} loading={loading}/>
                         </Form.Item>
                         <Form.Item
                             name="email"
@@ -113,7 +112,7 @@ const AccountPage: React.FC = () => {
                                 {type: 'email', message: 'Введите корректный адрес электронной почты!'}
                             ]}
                         >
-                            <Input size={"large"}/>
+                            <Input size={"large"} loading={loading}/>
                         </Form.Item>
                     </div>
                     <Form.Item>

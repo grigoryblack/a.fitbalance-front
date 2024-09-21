@@ -1,9 +1,20 @@
-import { ConfigProvider, Input as AntInput, InputProps } from 'antd';
+import { ConfigProvider, Input as AntInput, InputProps, Skeleton } from 'antd';
 import inputPasswordStyles from "./InputPasswordStyles.js";
-const InputPassword: React.FC<InputProps> = (props) => {
+
+interface CustomInputPasswordProps extends InputProps {
+    loading?: boolean; // Пропс для состояния загрузки
+}
+
+const InputPassword: React.FC<CustomInputPasswordProps> = (props) => {
+    const { loading, ...rest } = props;
+
     return (
         <ConfigProvider theme={inputPasswordStyles}>
-            <AntInput.Password {...props} />
+            {loading ? (
+                <Skeleton.Input active={true}/>
+            ) : (
+                <AntInput.Password {...rest} />
+            )}
         </ConfigProvider>
     );
 };
