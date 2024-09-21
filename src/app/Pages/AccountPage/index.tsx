@@ -24,7 +24,6 @@ const AccountPage: React.FC = () => {
                 try {
                     setLoading(true);
                     const userData = await axiosGet(`/users/${user.id}`);
-                    dispatch(updateUser(userData));
                     form.setFieldsValue(userData);
                     setLoading(false);
                 } catch (error) {
@@ -55,11 +54,12 @@ const AccountPage: React.FC = () => {
     const handleSubmit = async (values: any) => {
         setLoading(true);
         try {
-            axiosPut(`/users/${user.id}`, values);
+            let updatedUser = axiosPut(`/users/${user.id}`, values);
             notification.success({
                 message: 'Профиль обновлен',
                 description: 'Ваши данные были успешно обновлены.',
             });
+            dispatch(updateUser(await updatedUser));
             setIsEditing(false);
             setLoading(false);
         } catch (error) {
